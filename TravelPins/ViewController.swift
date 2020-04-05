@@ -12,6 +12,9 @@ import CoreLocation // enables ability to work with user location
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var noteText: UITextField!
+    
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager() // object used to stop and start delivery of location-related events to app
     
@@ -41,8 +44,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             // create the location pin
             let annotation = MKPointAnnotation()
             annotation.coordinate = touchedCoordinates // where to create pin
-            annotation.title = "New Annotation" // name of the pin
-            annotation.subtitle = "Travel Pins" // small text under the name of pin
+            annotation.title = nameText.text // name of the pin
+            annotation.subtitle = noteText.text // small text under the name of pin
             self.mapView.addAnnotation(annotation) // add the annotation to the mapView
             
         }
