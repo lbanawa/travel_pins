@@ -83,6 +83,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                                         mapView.addAnnotation(annotation)
                                         nameText.text = annotationTitle
                                         noteText.text = annotationSubtitle
+                                        
+                                        locationManager.stopUpdatingLocation()
+                                        
+                                        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                                        let region = MKCoordinateRegion(center: coordinate, span: span)
+                                        mapView.setRegion(region, animated: true)
+                                        
                                     }
                                 }
                             }
@@ -125,10 +132,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     // this is where you can get the current location information
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if selectedTitle == "" {
         let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude) // create a location with latitude and longitude
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05) // choose how much you want to zoom in on the map; the smaller the number, the more zoomed in
         let region = MKCoordinateRegion(center: location, span: span) // the area you'd like shown/ centered on your map
         mapView.setRegion(region, animated: true)
+        } else {
+            //
+        }
         
     }
     
