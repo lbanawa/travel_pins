@@ -14,6 +14,7 @@
 		9CFF3BA9243A8FE400360E25 /* TravelPins.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF3BA7243A8FE400360E25 /* TravelPins.xcdatamodeld */; };
 		9CFF3BAB243A8FE700360E25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF3BAA243A8FE700360E25 /* Assets.xcassets */; };
 		9CFF3BAE243A8FE700360E25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF3BAC243A8FE700360E25 /* LaunchScreen.storyboard */; };
+		9CFF3BB6243AAF4700360E25 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF3BB5243AAF4700360E25 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9CFF3BAA243A8FE700360E25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CFF3BAD243A8FE700360E25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CFF3BAF243A8FE700360E25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CFF3BB5243AAF4700360E25 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				9CFF3B9E243A8FE400360E25 /* AppDelegate.swift */,
 				9CFF3BA0243A8FE400360E25 /* SceneDelegate.swift */,
+				9CFF3BB5243AAF4700360E25 /* ListViewController.swift */,
 				9CFF3BA2243A8FE400360E25 /* ViewController.swift */,
 				9CFF3BA4243A8FE400360E25 /* Main.storyboard */,
 				9CFF3BAA243A8FE700360E25 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 				9CFF3BA3243A8FE400360E25 /* ViewController.swift in Sources */,
 				9CFF3B9F243A8FE400360E25 /* AppDelegate.swift in Sources */,
 				9CFF3BA1243A8FE400360E25 /* SceneDelegate.swift in Sources */,
+				9CFF3BB6243AAF4700360E25 /* ListViewController.swift in Sources */,
 				9CFF3BA9243A8FE400360E25 /* TravelPins.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
