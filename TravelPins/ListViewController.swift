@@ -13,6 +13,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     var titleArray = [String]()
     var idArray = [UUID]()
+    var chosenTitle = ""
+    var chosenTitleId : UUID?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +70,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @objc func addButtonClicked() {
+        chosenTitle = "" // chosen title should be empty because user wants to add a new travel pin
         performSegue(withIdentifier: "toViewController", sender: nil)
     }
     
@@ -81,6 +84,22 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    // when a row is selected, use the row number as the index value when looking at the saved data and return the correct data in the View Controller
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        chosenTitle = titleArray[indexPath.row]
+        chosenTitleId = idArray[indexPath.row]
+        performSegue(withIdentifier: "toViewController", sender: nil)
+    }
+    
+    // if the segue has the correct identifier, proceed to the specified destination -- pass the information to the second view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toViewController" {
+            let destinationVC = segue.destination as! ViewController
+            destinationVC.selectedTitle = chosenTitle
+            destinationVC.selectedTitleID = chosenTitleId
+            
+        }
+    }
 
 
 }
