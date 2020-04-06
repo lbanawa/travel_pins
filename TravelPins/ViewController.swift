@@ -9,6 +9,7 @@
 import UIKit
 import MapKit // allows map function
 import CoreLocation // enables ability to work with user location
+import CoreData // allows saving to a local database
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -17,6 +18,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager() // object used to stop and start delivery of location-related events to app
+    var chosenLatitude = Double()
+    var chosenLongitude = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let touchedPoint = gestureRecognizer.location(in: self.mapView) // use the location from mapView to recognize the point that was touched
             let touchedCoordinates = self.mapView.convert(touchedPoint, toCoordinateFrom: self.mapView) // convert a point into coordinates
             
+            chosenLatitude = touchedCoordinates.latitude
+            chosenLongitude = touchedCoordinates.longitude
+            
             // create the location pin
             let annotation = MKPointAnnotation()
             annotation.coordinate = touchedCoordinates // where to create pin
@@ -61,6 +67,33 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: true)
         
     }
+    
+    
+    @IBAction func saveButtonClicked(_ sender: Any) {
+        
+        // must use app delegate to reach and use automatically generated core data functions - use that data to save, delete and retrieve values
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate // must force cast this as AppDelegate to have access to AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let newPlace = NSEntityDescription.insertNewObject(forEntityName: "Places", into: context) // use 'context' to save and retrieve information
+        
+        // set values for the attributes in the Places entity
+        newPlace.setValue(nameText.text, forKey: "title")
+        newPlace.setValue(noteText.text, forKey: "subtitle")
+        newPlace.setValue(chosenLatitude, forKey: "latitude")
+        newPlace.setValue(chosenLongitude, forKey: "longitude")
+        newPlace.setValue(UUID(), forKey: "id")
+        
+        // save into Core Data -- use "do, try, catch" method to avoid throwing an error
+        do {
+            try context.save()
+            print("success")
+        } catch {
+            print("error")
+        }
+        
+    }
+    
 
 
 }
